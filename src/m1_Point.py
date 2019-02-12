@@ -49,6 +49,7 @@ class Point (object):
         self.start_y = y
         self.end_x = x
         self.end_y = y
+        self.distance_traveled = 0
 
     def __repr__(self):
         value = 'Point (' + str(self.x) + ' , ' + str(self.y) + ')'
@@ -59,6 +60,7 @@ class Point (object):
         return newpoint
 
     def move_to(self,x,y):
+        self.distance_traveled = math.sqrt((self.x-x)**2+(self.y-y)**2)+ self.distance_traveled
         self.x = x
         self.y = y
         newpoint = Point(self.x,self.y)
@@ -68,6 +70,7 @@ class Point (object):
         self.x = self.x +dx
         self.y = self.y +dy
         self.moves = self.moves + 1
+        self.distance_traveled = math.sqrt((dx**2)+(dy**2))+ self.distance_traveled
 
 
     def get_distance_from(self,other):
@@ -78,11 +81,6 @@ class Point (object):
         distance = math.sqrt((self.x - self.start_x)**2+(self.y - self.start_y)**2)
         return distance
 
-    def get_distance_traveled(self):
-        distance1 = math.sqrt((self.x - self.start_x)**2+(self.y-self.start_y)**2)
-        distance2 = math.sqrt((self.x-self.end_x)**2+(self.y-self.end_y)**2)
-        total_distance = distance1 + distance2
-        return total_distance
 
     def closer_to(self,p2,p3):
         distance1 = math.sqrt((self.x-p2.x)**2+(self.y-p2.y)**2)
@@ -920,7 +918,7 @@ def run_test_get_distance_traveled():
         print('Actual:', p4.get_distance_traveled())
     """
     # -------------------------------------------------------------------------
-    # TODO: 11.  Follow the same instructions as in _TODO_ 3 above,
+    # DONE: 11.  Follow the same instructions as in _TODO_ 3 above,
     #    but for the  get_distance_traveled  method specified above.
     # -------------------------------------------------------------------------
     print()
@@ -934,12 +932,12 @@ def run_test_get_distance_traveled():
     p1.move_to(21, 38)
     print()
     print('Expected p1 has traveled 9.0')
-    print('Actual:', p1.get_distance_traveled())
+    print('Actual:', p1.distance_traveled)
 
     p1.move_by(1, 1)
     print()
     print('Expected p1 has now traveled about 10.414')
-    print('Actual:', p1.get_distance_traveled())
+    print('Actual:', p1.distance_traveled)
 
     p2 = Point(0, 0)
     p3 = Point(100, 22)
@@ -951,11 +949,11 @@ def run_test_get_distance_traveled():
 
     print()
     print('Expected p2 has now traveled', 101 * 50.0)
-    print('Actual:', p2.get_distance_traveled())
+    print('Actual:', p2.distance_traveled)
     print('Expected p3 has now traveled', 101 * 50.0)
-    print('Actual:', p3.get_distance_traveled())
+    print('Actual:', p3.distance_traveled)
     print('Expected p4 has now traveled 100.0')
-    print('Actual:', p4.get_distance_traveled())
+    print('Actual:', p4.distance_traveled)
 
 
 def run_test_closer_to():
