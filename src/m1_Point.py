@@ -62,14 +62,13 @@ class Point (object):
         self.x = x
         self.y = y
         newpoint = Point(self.x,self.y)
+        self.moves = self.moves +1
 
     def move_by(self,dx,dy):
         self.x = self.x +dx
         self.y = self.y +dy
-
-    def get_number_of_moves_made(self):
         self.moves = self.moves + 1
-        return self.moves
+
 
     def get_distance_from(self,other):
         distance = math.sqrt((self.x-other.x)**2 + (self.y-other.y)**2)
@@ -81,7 +80,7 @@ class Point (object):
 
     def get_distance_traveled(self):
         distance1 = math.sqrt((self.x - self.start_x)**2+(self.y-self.start_y)**2)
-        distance2 = math.sqrt((self.end_x-self.x)**2+(self.end_y-self.y)**2)
+        distance2 = math.sqrt((self.x-self.end_x)**2+(self.y-self.end_y)**2)
         total_distance = distance1 + distance2
         return total_distance
 
@@ -626,9 +625,9 @@ def run_test_get_number_of_moves_made():
         print('Actual for p2 moves made:  ', p2.get_number_of_moves_made())
     """
     # -------------------------------------------------------------------------
-    # TODO: 8.  Follow the same instructions as in _TODO_ 3 above,
+    # DONE: 8.  Follow the same instructions as in _TODO_ 3 above,
     #    but for the  get_number_of_moves_made  method specified above.
-    # TODO (continued):  HINT: What must a Point REMEMBER for this method?
+    # DONE (continued):  HINT: What must a Point REMEMBER for this method?
     # -------------------------------------------------------------------------
     print()
     print('-----------------------------------------------------------')
@@ -640,17 +639,17 @@ def run_test_get_number_of_moves_made():
     p2 = Point(50, 20)
     print()
     print('Expected for p1 moves made: 0')
-    print('Actual for p1 moves made:  ', p1.get_number_of_moves_made())
+    print('Actual for p1 moves made:  ', p1.moves)
     print('Expected for p2 moves made: 0')
-    print('Actual for p2 moves made:  ', p2.get_number_of_moves_made())
+    print('Actual for p2 moves made:  ', p2.moves)
 
     p1.move_by(5, -1)
     p2.move_by(0, 0)
     print()
     print('Expected for p1 moves made: 1')
-    print('Actual for p1 moves made:  ', p1.get_number_of_moves_made())
+    print('Actual for p1 moves made:  ', p1.moves)
     print('Expected for p2 moves made: 1')
-    print('Actual for p2 moves made:  ', p2.get_number_of_moves_made())
+    print('Actual for p2 moves made:  ', p2.moves)
 
     p2.move_by(200, 0)
     p2.move_by(-100, 300)
@@ -658,9 +657,9 @@ def run_test_get_number_of_moves_made():
     p1.move_to(3, 3)
     print()
     print('Expected for p1 moves made: 2')
-    print('Actual for p1 moves made:  ', p1.get_number_of_moves_made())
+    print('Actual for p1 moves made:  ', p1.moves)
     print('Expected for p2 moves made: 4')
-    print('Actual for p2 moves made:  ', p2.get_number_of_moves_made())
+    print('Actual for p2 moves made:  ', p2.moves)
 
     p1.move_by(200, 0)
     p1.move_by(-100, 300)
@@ -668,24 +667,24 @@ def run_test_get_number_of_moves_made():
     p1.move_to(3, 3)
     print()
     print('Expected for p1 moves made: 6')
-    print('Actual for p1 moves made:  ', p1.get_number_of_moves_made())
+    print('Actual for p1 moves made:  ', p1.moves)
     print('Expected for p2 moves made: 4')
-    print('Actual for p2 moves made:  ', p2.get_number_of_moves_made())
+    print('Actual for p2 moves made:  ', p2.moves)
 
     p1.x = 400
     print()
     print('Expected for p1 moves made: 6')
-    print('Actual for p1 moves made:  ', p1.get_number_of_moves_made())
+    print('Actual for p1 moves made:  ', p1.moves)
     print('Expected for p2 moves made: 4')
-    print('Actual for p2 moves made:  ', p2.get_number_of_moves_made())
+    print('Actual for p2 moves made:  ', p2.moves)
 
     p1.move_to(3, 3)
     p2.move_by(0, 0)
     print()
     print('Expected for p1 moves made: 7')
-    print('Actual for p1 moves made:  ', p1.get_number_of_moves_made())
+    print('Actual for p1 moves made:  ', p1.moves)
     print('Expected for p2 moves made: 5')
-    print('Actual for p2 moves made:  ', p2.get_number_of_moves_made())
+    print('Actual for p2 moves made:  ', p2.moves)
 
 def run_test_get_distance_from():
     """
